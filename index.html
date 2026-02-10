@@ -229,124 +229,21 @@
         </div>
     </div>
 
-    <!-- Modal CLABE -->
-    <div id="clabeModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">×</span>
-            <h2 class="modal-title">💕 Apoya este proyecto 💕</h2>
-            <div class="clabe-container">
-                <p class="clabe-label">CLABE Interbancaria:</p>
-                <div class="clabe-display" id="clabeDisplay">638180000176182306</div>
-                <button class="copy-clabe-btn" id="copyClabeBtn">📋 Copiar CLABE</button>
-            </div>
-            <p class="modal-note">Nota: Reemplaza la CLABE en setup.html y script.js con tu CLABE real</p>
-        </div>
-    </div>
-
     <!-- Footer -->
     <div class="footer">
-        <p class="footer-text">Created by Juan Carlos Mendez</p>
+        <p class="footer-text">Created by Antonio Jiménez</p>
     </div>
 
     <script>
         // Configuración de CLABE - REEMPLAZA con tu CLABE interbancaria real
-        const CLABE_INTERBANCARIA = '638180000176182306';
+       // const CLABE_INTERBANCARIA = '638180000176182306';
         
         const form = document.getElementById('setupForm');
         const shareSection = document.getElementById('shareSection');
         const shareLink = document.getElementById('shareLink');
         const copyBtn = document.getElementById('copyBtn');
         const coffeeBtn = document.getElementById('coffeeBtn');
-        const modal = document.getElementById('clabeModal');
-        const closeBtn = document.querySelector('.modal-close');
-        const clabeDisplay = document.getElementById('clabeDisplay');
-        const copyClabeBtn = document.getElementById('copyClabeBtn');
-        
-        // Configurar modal CLABE
-        if (clabeDisplay) {
-            clabeDisplay.textContent = CLABE_INTERBANCARIA;
-        }
-        
-        // Abrir modal al hacer click en el botón
-        if (coffeeBtn) {
-            coffeeBtn.addEventListener('click', () => {
-                modal.classList.add('active');
-            });
-        }
-        
-        // Cerrar modal al hacer click en la X
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-        }
-        
-        // Cerrar modal al hacer click fuera del contenido
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
-        }
-        
-        // Cerrar modal con tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-            }
-        });
-        
-        // Copiar CLABE al portapapeles
-        if (copyClabeBtn) {
-            copyClabeBtn.addEventListener('click', () => {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(CLABE_INTERBANCARIA).then(() => {
-                        copyClabeBtn.textContent = '✓ Copiado!';
-                        copyClabeBtn.classList.add('copied');
-                        setTimeout(() => {
-                            copyClabeBtn.textContent = '📋 Copiar CLABE';
-                            copyClabeBtn.classList.remove('copied');
-                        }, 2000);
-                    }).catch(() => {
-                        fallbackCopyTextToClipboard(CLABE_INTERBANCARIA, copyClabeBtn);
-                    });
-                } else {
-                    fallbackCopyTextToClipboard(CLABE_INTERBANCARIA, copyClabeBtn);
-                }
-            });
-        }
-        
-        // Función fallback para copiar texto
-        function fallbackCopyTextToClipboard(text, button) {
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-999999px';
-            textArea.style.top = '-999999px';
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                button.textContent = '✓ Copiado!';
-                button.classList.add('copied');
-                setTimeout(() => {
-                    button.textContent = '📋 Copiar CLABE';
-                    button.classList.remove('copied');
-                }, 2000);
-            } catch (err) {
-                console.error('Error al copiar:', err);
-                button.textContent = '❌ Error';
-                setTimeout(() => {
-                    button.textContent = '📋 Copiar CLABE';
-                }, 2000);
-            }
-            
-            document.body.removeChild(textArea);
-        }
-
+    
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             
